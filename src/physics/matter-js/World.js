@@ -269,16 +269,11 @@ var World = new Class({
         MatterEvents.on(engine, 'collisionEnd', function (event)
         {
             var pairs = event.pairs;
-            var bodyA;
-            var bodyB;
 
-            if (pairs.length > 0)
+            for (var i = 0; i < pairs.length; i++)
             {
-                bodyA = pairs[0].bodyA;
-                bodyB = pairs[0].bodyB;
+                _this.emit('collisionend', event, pairs[i].bodyA, pairs[i].bodyB)
             }
-
-            _this.emit('collisionend', event, bodyA, bodyB);
         });
     },
 
